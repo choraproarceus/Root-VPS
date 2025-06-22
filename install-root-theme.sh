@@ -3,10 +3,12 @@
 set -e
 echo "📦 Instalando tema Root VPS..."
 
-cd /var/www/pterodactyl
+# Se quiser, descomente a linha abaixo se tiver o Pterodactyl instalado no /var/www/pterodactyl
+# cd /var/www/pterodactyl
 
-# Garantir que a pasta existe
+# Criar as pastas necessárias caso não existam
 mkdir -p public/images
+mkdir -p resources/css
 
 # Baixar imagem de fundo
 wget https://wallpapercave.com/wp/wp11054507.jpg -O public/images/bg-gamer.jpg
@@ -47,13 +49,22 @@ h1, h2, h3, label {
 }
 EOL
 
-# Instalar dependências
-npm install
-npm run build
+# Instalar dependências (só funciona se for dentro do Pterodactyl mesmo)
+if [ -f package.json ]; then
+    npm install
+    npm run build
+else
+    echo "⚠️ Aviso: Não foi encontrado o package.json (provavelmente você não está dentro da pasta do painel Pterodactyl)."
+    echo "⚠️ Pulei a parte de npm install e build."
+fi
 
-# Limpar cache
-php artisan view:clear
-php artisan config:clear
-php artisan cache:clear
+# Limpar cache (também só se estiver dentro do Pterodactyl com Laravel)
+if [ -f artisan ]; then
+    php artisan view:clear
+    php artisan config:clear
+    php artisan cache:clear
+else
+    echo "⚠️ Aviso: Artisan não encontrado. Pulando limpeza de cache Laravel."
+fi
 
 echo "✅ Tema Root VPS aplicado com sucesso!"
