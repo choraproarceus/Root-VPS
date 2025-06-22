@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background: #0b0b0b url('/images/bg-gamer.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+a {
+    color: #00ffe1;
+}
+
+.navbar {
+    background-color: #121212 !important;
+    border-bottom: 2px solid #00ffe1;
+}
+
+button {
+    border-radius: 8px;
+    background-color: #00ffe1;
+    color: #000;
+}
+
+button:hover {
+    background-color: #00bfa6;
+}
+
+h1, h2, h3, label {
+    color: #00ffe1 !important;
+}
