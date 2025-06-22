@@ -5,6 +5,9 @@ echo "📦 Instalando tema Root VPS..."
 
 cd /var/www/pterodactyl
 
+# Garantir que a pasta existe
+mkdir -p public/images
+
 # Baixar imagem de fundo
 wget https://wallpapercave.com/wp/wp11054507.jpg -O public/images/bg-gamer.jpg
 
